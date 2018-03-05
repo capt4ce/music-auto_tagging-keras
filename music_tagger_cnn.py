@@ -62,11 +62,15 @@ def MusicTaggerCNN(weights='msd', input_tensor=None,
                          '`None` (random initialization) or `msd` '
                          '(pre-training on Million Song Dataset).')
 
+    K.set_image_dim_ordering('th')
+
     # Determine proper input shape
     if K.image_dim_ordering() == 'th':
         input_shape = (1, 96, 1366)
+        # raise RuntimeError("th")
     else:
         input_shape = (96, 1366, 1)
+        # raise RuntimeError("tf")
 
     if input_tensor is None:
         melgram_input = Input(shape=input_shape)
