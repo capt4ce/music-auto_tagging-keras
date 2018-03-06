@@ -47,14 +47,18 @@ def main(net):
 
     # load model like this
     if net == 'cnn':
-        model = MusicTaggerCNN(weights='msd', include_top=False)
+        # model = MusicTaggerCNN(weights='msd', include_top=False)
+        model = MusicTaggerCNN(weights=None, include_top=False)
     elif net == 'crnn':
-        model = MusicTaggerCRNN(weights='msd', include_top=False)
+        # model = MusicTaggerCRNN(weights='msd', include_top=False)
+        model = MusicTaggerCRNN(weights=None, include_top=False)
     # predict the tags like this
     print('Predicting features...')
     start = time.time()
     features = model.predict(melgrams)
-    print features[:, :10]
+    # print(features[:, :10])
+    print(features[:, :])
+    print(len(features))
     return
 
 if __name__ == '__main__':

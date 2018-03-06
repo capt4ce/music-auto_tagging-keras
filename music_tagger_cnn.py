@@ -133,7 +133,7 @@ def MusicTaggerCNN(weights='msd', input_tensor=None,
     if weights is None:
         return model    
     else: 
-        # Load input
+        # weights used by MSD
         if K.image_dim_ordering() == 'tf':
             raise RuntimeError("Please set image_dim_ordering == 'th'."
                                "You can set it at ~/.keras/keras.json")

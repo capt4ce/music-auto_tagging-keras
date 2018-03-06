@@ -20,6 +20,8 @@ def main(mode, conv_until=None):
     if conv_until is None:
         conv_until = 4
 
+    K.set_image_dim_ordering('th')
+
     assert K.image_dim_ordering() == 'th', ('image_dim_ordering should be "th". ' +
                                             'open ~/.keras/keras.json to change it.')
 

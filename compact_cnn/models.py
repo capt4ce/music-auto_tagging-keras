@@ -7,7 +7,7 @@ from keras.layers.convolutional import Convolution2D, MaxPooling2D
 from keras.layers.normalization import BatchNormalization
 from keras.layers.pooling import GlobalAveragePooling2D
 from kapre.time_frequency import Melspectrogram
-from kapre.utils import Normalization2D
+from kapre.Utils import Normalization2D
 
 SR = 12000
 
@@ -84,7 +84,7 @@ def get_convBNeluMPdrop(num_conv_layers, nums_feat_maps,
     if conv_until is None:
         conv_until = num_conv_layers  # end-inclusive.
 
-    for conv_idx in xrange(num_conv_layers):
+    for conv_idx in range(num_conv_layers):
         # add conv layer
         if not input_shape_specified:
             model.add(Convolution2D(nums_feat_maps[conv_idx],
@@ -99,7 +99,7 @@ def get_convBNeluMPdrop(num_conv_layers, nums_feat_maps,
                                     border_mode='same',
                                     init='he_normal'))
         # add BN, Activation, pooling
-        model.add(BatchNormalization(axis=1, mode=2))
+        model.add(BatchNormalization(axis=1, mode=0))
         model.add(keras.layers.advanced_activations.ELU(alpha=1.0))  # TODO: select activation
 
         model.add(MaxPooling2D(pool_size=pool_sizes[conv_idx]))
